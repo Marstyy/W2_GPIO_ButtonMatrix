@@ -274,7 +274,7 @@ void ButtonMatrixRead()
 
 		for(int i ; i < 4; i++)
 		{
-			if ( HAL_GPIO_ReadPin(ButtonMatrixPortR[i], ButtonMatrixPinR[i]) = GPIO_PIN_RESET); // Button press
+			if ( HAL_GPIO_ReadPin(ButtonMatrixPortR[i], ButtonMatrixPinR[i]) == GPIO_PIN_RESET) // Button press
 			{
 				//set bit i to 1
 				ButtonState |= 1 << (i + (CurrentL*4));
