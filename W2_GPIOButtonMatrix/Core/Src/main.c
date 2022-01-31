@@ -42,7 +42,7 @@
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-
+uint16_t ButtonState = 0; //store 4x4
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -50,7 +50,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN PFP */
-
+void ButtonMatrixRead();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -98,6 +98,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  //function that read Button
+	  ButtonMatrixRead();
   }
   /* USER CODE END 3 */
 }
@@ -252,6 +254,48 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//Read button state form 4x4 button
+
+GPIO_TypeDef* ButtonMatrixPortR[4] = {R1_GPIO_Port,R2_GPIO_Port,R3_GPIO_Port,R4_GPIO_Port};
+uint16_t ButtonMatrixPinR[4] = {R1_Pin,R2_Pin,R3_Pin,R4_Pin};
+
+GPIO_TypeDef* ButtonMatrixPortL[4] = {L1_GPIO_Port,L2_GPIO_Port,L3_GPIO_Port,L4_GPIO_Port};
+uint16_t ButtonMatrixPinL[4] = {L1_Pin,L2_Pin,L3_Pin,L4_Pin};
+
+
+void ButtonMatrixRead()
+{
+	static uint32_t timeStamp = 0;
+	static uint8_t CurrentL = 0;
+	//call reader every 100ms
+	if (HAL_GetTick() - timeStamp >= 100)
+	{
+		timeStamp = HAL_GetTick();
+
+		for(int i ; i < 4; i++)
+		{
+			if ( HAL_GPIO_ReadPin(ButtonMatrixPortR[i], ButtonMatrixPinR[i]) = GPIO_PIN_RESET); // Button press
+			{
+				//set bit i to 1
+				ButtonState |= 1 << (i + (CurrentL*4));
+			}
+			else
+			{
+				//set bit i to 0
+				ButtonState &= ~(1 << (i + (CurrentL*4)) );
+
+			}
+		}
+
+		HAL_GPIO_WritePin(ButtonMatrixPortL[CurrentL], ButtonMatrixPinL[CurrentL], GPIO_PIN_SET);
+
+		uint8_t nextL = ( CurrentL+1 ) % 4;
+		HAL_GPIO_WritePin(ButtonMatrixPortL[nextL], ButtonMatrixPinL[nextL], GPIO_PIN_RESET);
+		CurrentL = nextL;
+	}
+
+}
+
 
 /* USER CODE END 4 */
 
