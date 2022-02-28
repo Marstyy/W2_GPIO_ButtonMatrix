@@ -893,7 +893,7 @@ void ButtonMatrixRead()
 			else
 			{
 				//set bit i to 0
-				ButtonState &= ~(1 << (i + (CurrentL*4)) );
+				ButtonState &= ~(1 << (i + (CurrentL*4)));
  80007fc:	4b26      	ldr	r3, [pc, #152]	; (8000898 <ButtonMatrixRead+0x104>)
  80007fe:	781b      	ldrb	r3, [r3, #0]
  8000800:	009a      	lsls	r2, r3, #2

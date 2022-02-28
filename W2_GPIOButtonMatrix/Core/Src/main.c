@@ -282,7 +282,7 @@ void ButtonMatrixRead()
 			else
 			{
 				//set bit i to 0
-				ButtonState &= ~(1 << (i + (CurrentL*4)) );
+				ButtonState &= ~(1 << (i + (CurrentL*4)));
 
 			}
 		}
