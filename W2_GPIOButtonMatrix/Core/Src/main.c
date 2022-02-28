@@ -285,7 +285,11 @@ void ButtonMatrixRead()
 				ButtonState &= ~(1 << (i + (CurrentL*4)));
 
 			}
+			for(int j = 0 ; j < 10 ; j++){
+
+			}
 		}
+
 
 		HAL_GPIO_WritePin(ButtonMatrixPortL[CurrentL], ButtonMatrixPinL[CurrentL], GPIO_PIN_SET);
 
