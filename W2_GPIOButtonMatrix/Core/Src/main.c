@@ -105,76 +105,77 @@ int main(void)
 
 	  //Experiment 2
 //	  static uint8_t i = 0;
-	  static uint16_t Data[11] = {6,3,3,4,0,5,0,0,0,7,0};
-	  static uint32_t timeStamp = 0;
-	  if(HAL_GetTick() - timeStamp >= 400){	//100 ms or 0.5s
-		  timeStamp = HAL_GetTick();
-		  if(ButtonState == 1){
-			  DataAns[i] = 7;
-			  i += 1;
-		  }
-		  else if(ButtonState == 2){
-			  DataAns[i] = 8;
-			  i += 1;
-		  }
-		  else if(ButtonState == 4){
-			  DataAns[i] = 9;
-			  i += 1;
-		  }
-		  else if(ButtonState == 16){
-			  DataAns[i] = 4;
-			  i += 1;
-		  }
-		  else if(ButtonState == 32){
-			  DataAns[i] = 5;
-			  i += 1;
-		  }
-		  else if(ButtonState == 64){
-			  DataAns[i] = 6;
-			  i += 1;
-		  }
-		  else if(ButtonState == 256){
-			  DataAns[i] = 1;
-			  i += 1;
-		  }
-		  else if(ButtonState == 512){
-			  DataAns[i] = 2;
-			  i += 1;
-		  }
-		  else if(ButtonState == 1024){
-			  DataAns[i] = 3;
-			  i += 1;
-		  }
-		  else if(ButtonState == 4096){
-			  DataAns[i] = 0;
-			  i += 1;
-		  }
-		  else if(ButtonState == 32768){
-			  for(int j=0 ; j < 11 ; j++){
-				  if(Data[j] == DataAns[j]){
-					  if(j == 10){
-						  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
-					  }
-				  }
-				  else{
-					  i = 0;
-				  }
-			  }
-		  }
-		  else if(ButtonState == 8){
-			  for(int j = 0 ; j < 11 ; j++){
-				  DataAns[j] = 0;
-			  }
-			  i = 0;
-		  }
-		  else if(ButtonState == 128){
-			  DataAns[i-1] = 0;
-			  i -= 1;
-		  }
-	  }
+
+//	  static uint16_t Data[11] = {6,3,3,4,0,5,0,0,0,7,0};
+//	  static uint32_t timeStamp = 0;
+//	  if(HAL_GetTick() - timeStamp >= 400){	//100 ms or 0.5s
+//		  timeStamp = HAL_GetTick();
+//		  if(ButtonState == 1){
+//			  DataAns[i] = 7;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 2){
+//			  DataAns[i] = 8;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 4){
+//			  DataAns[i] = 9;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 16){
+//			  DataAns[i] = 4;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 32){
+//			  DataAns[i] = 5;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 64){
+//			  DataAns[i] = 6;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 256){
+//			  DataAns[i] = 1;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 512){
+//			  DataAns[i] = 2;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 1024){
+//			  DataAns[i] = 3;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 4096){
+//			  DataAns[i] = 0;
+//			  i += 1;
+//		  }
+//		  else if(ButtonState == 32768){
+//			  for(int j=0 ; j < 11 ; j++){
+//				  if(Data[j] == DataAns[j]){
+//					  if(j == 10){
+//						  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+//					  }
+//				  }
+//				  else{
+//					  i = 0;
+//				  }
+//			  }
+//		  }
+//		  else if(ButtonState == 8){
+//			  for(int j = 0 ; j < 11 ; j++){
+//				  DataAns[j] = 0;
+//			  }
+//			  i = 0;
+//		  }
+//		  else if(ButtonState == 128){
+//			  DataAns[i-1] = 0;
+//			  i -= 1;
+//		  }
+//	  }
 
 
-
+	  	  //Experiment 2 Key pad
 
 
 
